@@ -1,0 +1,45 @@
+<h1>Listing inspections</h1>
+<p> 
+	Download:
+	<%= link_to "CSV", inspections_path(format: "csv")%> 
+	<%= link_to "Excel", inspections_path(format: "xls")%> 
+</p>
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Unit number</th>
+      <th>Inspector</th>
+      <th>Components</th>
+			<th>Granite</th>
+			<th>Flooring</th>
+			<th>Appliances</th>
+      <th>Inspection date</th>
+      <th>Comments</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inspections.each do |inspection| %>
+      <tr>
+        <td><%= inspection.property %></td>
+        <td><%= inspection.unit_number %></td>
+        <td><%= inspection.inspector %></td>
+        <td><%= inspection.components %></td>
+        <td><%= inspection.granite %></td>
+        <td><%= inspection.flooring %></td>
+        <td><%= inspection.appliances %></td>
+        <td><%= inspection.inspection_date %></td>
+        <td><%= inspection.comments %></td>
+        <td><%= link_to 'Show', inspection %></td>
+        <td><%= link_to 'Edit', edit_inspection_path(inspection) %></td>
+        <td><%= link_to 'Destroy', inspection, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Inspection', new_inspection_path %>

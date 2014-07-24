@@ -1,0 +1,75 @@
+<%= form_for(@inspection) do |f| %>
+  <% if @inspection.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@inspection.errors.count, "error") %> prohibited this inspection from being saved:</h2>
+
+      <ul>
+      <% @inspection.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field" id="property-dropdown">
+    <%= f.label :property %><br>
+    <%= collection_select(:inspection, :property, Property.all, :property, :property, prompt: true)%>
+  </div>
+	<script>propertyDropdownListener()</script>
+
+  <div class="field" id="unit-dropdown">
+    <%= f.label :unit_number %><br>
+    <%= collection_select(:inspection, :unit_number, [], :unit_number, :unit_number, prompt: true)  %>
+  </div>
+  <div class="field">
+    <%= f.label :inspector %><br>
+    <%= collection_select(:inspection, :inspector, Inspector.all, :inspector, :inspector, prompt: true) %>
+  </div>
+  <div class="field">
+    <%= f.label :components %><br>
+		Yes
+		<%= f.radio_button :components, true %>
+		NO
+		<%= f.radio_button :components, false %>
+		<%= f.radio_button :components, "", :style => "display: none;"%>
+  </div>
+  <div class="field">
+    <%= f.label :granite %><br>
+		Yes
+		<%= f.radio_button :granite, true %>
+		NO
+		<%= f.radio_button :granite, false %>
+		<%= f.radio_button :granite, "", :style => "display: none;"%>
+  </div>
+  <div class="field">
+    <%= f.label :flooring %><br>
+		Yes
+		<%= f.radio_button :flooring, true %>
+		NO
+		<%= f.radio_button :flooring, false %>
+		<%= f.radio_button :flooring, "", :style => "display: none;"%>
+  </div>
+  <div class="field">
+    <%= f.label :appliances %><br>
+		Yes
+		<%= f.radio_button :appliances, true %>
+		NO
+		<%= f.radio_button :appliances, false %>
+		<%= f.radio_button :appliances, "", :style => "display: none;"%>
+  </div>
+  <div class="field">
+    <%= f.label :inspection_date %><br>
+    <%= f.date_field :inspection_date, :value => Time.now.strftime("%Y-%m-%d")%>
+  </div>
+  <div class="field">
+    <%= f.label :comments %><br>
+    <%= f.text_field :comments %>
+  </div>
+	<div id="image-field" class="field">
+	  <%= f.label :image %><br>
+		<%= f.file_field :image, :accept => "image/*", :multiple => true%>
+	</div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

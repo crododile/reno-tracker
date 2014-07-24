@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Property:</strong>
+  <%= @inspection.property %>
+</p>
+
+<p>
+  <strong>Unit number:</strong>
+  <%= @inspection.unit_number %>
+</p>
+
+<p>
+  <strong>Inspector:</strong>
+  <%= @inspection.inspector %>
+</p>
+
+<p>
+  <strong>Components:</strong>
+  <%= @inspection.components %>
+</p>
+
+<p>
+  <strong>Granite:</strong>
+  <%= @inspection.granite %>
+</p>
+
+<p>
+  <strong>Flooring:</strong>
+  <%= @inspection.flooring %>
+</p>
+
+<p>
+  <strong>Appliances:</strong>
+  <%= @inspection.components %>
+</p>
+
+<p>
+  <strong>Inspection date:</strong>
+  <%= @inspection.inspection_date %>
+</p>
+
+<p>
+  <strong>Comments:</strong>
+  <%= @inspection.comments %>
+</p>
+
+<div>
+	<strong>Images:</strong><br>
+	<% @inspection.inspection_images.each do |img| %>
+		<%= image_tag img.inspection_photo.url(:big)%>
+		<br>
+	<% end %>
+</div>
+
+<%= link_to 'Edit', edit_inspection_path(@inspection) %> |
+<%= link_to 'Back', inspections_path %>
